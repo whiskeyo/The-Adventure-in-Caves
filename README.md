@@ -5,6 +5,7 @@ This game is my project for the course Objected Oriented Programming (summer sem
 **What is it about? - short description of the game**
 
 Player appears in the cave, his main goal is to get out of it. To do so, he needs to pass few levels, in which he should collect as much coins as possible and fight his enemies, who are ready to stop him.
+
 See it here: https://www.youtube.com/watch?v=XgQRgbAI9ow
 
 
