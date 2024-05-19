@@ -25,7 +25,7 @@ Player::Player(std::string l_filename)
     m_bounding_box.setFillColor(sf::Color(255, 0, 0, 100));
 
     m_frame = 0;
-    //m_player_texture.loadFromFile(ResourceManager::getInstance()->requestTexture("player"));
+    // m_player_texture.loadFromFile(ResourceManager::getInstance()->requestTexture("player"));
     m_player_sprite.setTexture(ResourceManager::getInstance()->requestTexture("player"), true);
     m_player_sprite.setOrigin(P_FRAMESIZE2);
 
@@ -42,13 +42,12 @@ Player::Player(std::string l_filename)
                 m_bounding_box.setPosition(50 * block_x + 29, 50 * block_y + 22);
                 m_starting_position = sf::Vector2f(50 * block_x + 29, 50 * block_y + 22);
             }
-
         }
 
     level.close();
 }
 
-void Player::attack(Character *l_enemy)
+void Player::attack(Character* l_enemy)
 {
     l_enemy->changeHealth(-m_damage);
     m_attack_clock.restart();
@@ -78,11 +77,13 @@ void Player::gameOver()
     m_health = 0;
     m_action = Action::DYING;
     m_bounding_box.move(2000, 2000);
-    
+
     m_frame = 1;
 
-    do { animation(4, 80, 48, 320); }
-    while (m_frame != 0);
+    do
+    {
+        animation(4, 80, 48, 320);
+    } while (m_frame != 0);
 }
 
 void Player::restartGame()
@@ -100,8 +101,10 @@ void Player::animation(int l_frames, int l_ms, int l_starting_x, int l_starting_
     if (m_anim_clock.getElapsedTime() > sf::milliseconds(l_ms))
     {
         m_anim_clock.restart();
-        if (m_frame <  l_frames)  m_frame++;
-        if (m_frame == l_frames)  m_frame = 0;
+        if (m_frame < l_frames)
+            m_frame++;
+        if (m_frame == l_frames)
+            m_frame = 0;
         m_player_sprite.setTextureRect(sf::IntRect(sf::Vector2i(l_starting_x * m_frame, l_starting_y), P_FRAMESIZE));
     }
 }
@@ -126,12 +129,14 @@ void Player::update()
     {
         m_can_jump = false;
         m_speed.y = -m_jump_speed;
-        //m_speed.y = -sqrt(2.0 * 100.0f * m_accel.y * m_jump_speed);
+        // m_speed.y = -sqrt(2.0 * 100.0f * m_accel.y * m_jump_speed);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && m_boost)
-        { changeHealth(0); m_boost = false; }
-
+    {
+        changeHealth(0);
+        m_boost = false;
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
@@ -158,6 +163,6 @@ void Player::update()
 }
 void Player::render(sf::RenderWindow& l_window)
 {
-    //l_window.draw(m_bounding_box);
+    // l_window.draw(m_bounding_box);
     l_window.draw(m_player_sprite);
 }

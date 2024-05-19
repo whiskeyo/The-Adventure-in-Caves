@@ -4,14 +4,16 @@ Collider::Collider(sf::RectangleShape& l_body) : m_body(l_body)
 {
 }
 
-Collider::~Collider() {}
+Collider::~Collider()
+{
+}
 
 bool Collider::checkCollision(Collider l_other, sf::Vector2f& l_direction, float l_push)
 {
     sf::Vector2f other_position = l_other.getPosition();
     sf::Vector2f other_halfsize = l_other.getHalfSize();
-    sf::Vector2f this_position  = getPosition();
-    sf::Vector2f this_halfsize  = getHalfSize();
+    sf::Vector2f this_position = getPosition();
+    sf::Vector2f this_halfsize = getHalfSize();
 
     float delta_x = other_position.x - this_position.x;
     float delta_y = other_position.y - this_position.y;

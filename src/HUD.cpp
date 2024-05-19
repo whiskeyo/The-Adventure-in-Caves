@@ -19,12 +19,12 @@ HUD::HUD(Player* l_player) : m_player(l_player)
 void HUD::update()
 {
     m_score_text.setString("Score: " + std::to_string(m_player->getScore()));
-                           //+ "   Record: " + std::to_string(m_player->getScoreRecord()));
-                           //+ " Health: " + std::to_string(m_player->getHealth()));
+    //+ "   Record: " + std::to_string(m_player->getScoreRecord()));
+    //+ " Health: " + std::to_string(m_player->getHealth()));
     m_score_record_text.setString("Record: " + std::to_string(m_player->getScoreRecord()));
 
-    //std::cout << "m_player->getHealth() = " << std::to_string(m_player->getHealth()) << std::endl;
-    //std::cout << "m_health.size() = " << std::to_string(m_health.size()) << std::endl;
+    // std::cout << "m_player->getHealth() = " << std::to_string(m_player->getHealth()) << std::endl;
+    // std::cout << "m_health.size() = " << std::to_string(m_health.size()) << std::endl;
 
     if (m_player->getHealth() == m_health.size())
         return;
@@ -32,7 +32,7 @@ void HUD::update()
     int hp_diff = abs(m_player->getHealth() - (int)m_health.size());
 
     if (m_player->getHealth() > (int)m_health.size())
-        for (int i = 0; i <= hp_diff && m_player->getHealth() >  0; i++)
+        for (int i = 0; i <= hp_diff && m_player->getHealth() > 0; i++)
             m_health.push_back(HeartHUD(sf::Vector2f(m_health_pos.x + m_health.size() * 50, m_health_pos.y)));
 
     if (m_player->getHealth() < (int)m_health.size())

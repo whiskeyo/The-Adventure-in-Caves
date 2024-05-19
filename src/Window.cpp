@@ -1,7 +1,8 @@
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 #include "Window.hpp"
+
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 
 Window::Window()
 {
@@ -20,13 +21,13 @@ Window::~Window()
 
 void Window::setup(const std::string& l_title, const sf::Vector2u& l_size)
 {
-    m_done         = false;
-    m_fullscreen   = false;
-    m_focused      = true;
-    m_paused       = false;
+    m_done = false;
+    m_fullscreen = false;
+    m_focused = true;
+    m_paused = false;
     m_window_title = l_title;
-    m_window_size  = l_size;
-    m_vsync        = true;
+    m_window_size = l_size;
+    m_vsync = true;
     create();
 }
 
@@ -64,14 +65,14 @@ void Window::update()
 
 void Window::toggleFullscreen()
 {
-    m_fullscreen = !m_fullscreen;
+    m_fullscreen = ! m_fullscreen;
     destroy();
     create();
 }
 
 void Window::togglePaused()
 {
-    m_paused = !m_paused;
+    m_paused = ! m_paused;
 }
 
 void Window::beginDraw()

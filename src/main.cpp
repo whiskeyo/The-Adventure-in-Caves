@@ -8,14 +8,14 @@
 
  */
 
-
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <string>
+#include "Game.hpp"
 #include "ResourceManager.hpp"
 #include "Window.hpp"
-#include "Game.hpp"
+
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <string>
 
 int main()
 {
