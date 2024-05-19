@@ -12,7 +12,6 @@ See it here: https://www.youtube.com/watch?v=XgQRgbAI9ow
 **Installing SFML, compiling and running the game:**
 ```
 $ sudo apt-get install libsfml-dev
-$ g++ -c *.cpp 
-$ g++ -o TAiC *.o -lsfml-graphics -lsfml-window -lsfml-system
-$ ./TAiC
+$ cmake -S . -B build && cmake --build build -j$(nproc)
+$ ./build/the-adventure-in-caves
 ```
