@@ -1,14 +1,24 @@
 #include "Block.hpp"
 
-Block::Block(sf::Vector2f l_position, sf::Color l_color)
+Block::Block(sf::Vector2f position, sf::Color color)
 {
     m_body.setSize(sf::Vector2f(W_BLOCKSIZE, W_BLOCKSIZE));
     m_body.setOrigin(sf::Vector2f(W_BLOCKSIZE / 2, W_BLOCKSIZE / 2));
-    m_body.setFillColor(l_color);
-    m_body.setPosition(l_position);
+    m_body.setFillColor(color);
+    m_body.setPosition(position);
 }
 
-void Block::render(sf::RenderWindow& l_window)
+void Block::setColor(const std::uint8_t red, const std::uint8_t green, const std::uint8_t blue)
 {
-    l_window.draw(m_body);
+    m_body.setFillColor(sf::Color(red, green, blue));
+}
+
+void Block::render(sf::RenderWindow& window)
+{
+    window.draw(m_body);
+}
+
+Collider Block::getCollider()
+{
+    return Collider(m_body);
 }

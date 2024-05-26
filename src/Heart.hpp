@@ -1,22 +1,19 @@
 #ifndef HEART_HPP
 #define HEART_HPP
 
-#include "Collectible.hpp"
 #include "Collider.hpp"
-#include "ResourceManager.hpp"
+#include "ICollectible.hpp"
 #include "Settings.hpp"
 
 #include <SFML/Graphics.hpp>
 
-class Heart : Collectible
+class Heart : ICollectible
 {
 public:
     Heart(sf::Vector2f l_position);
 
-    Collider getCollider()
-    {
-        return Collider(m_bounding_box);
-    }
+    Collider getCollider();
+
     void animation(int l_frames, int l_ms, int l_starting_x, int l_starting_y);
     void update();
     void render(sf::RenderWindow& l_window);

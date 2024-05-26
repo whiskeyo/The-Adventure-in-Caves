@@ -1,14 +1,13 @@
 #ifndef PORTAL_HPP
 #define PORTAL_HPP
 
-#include "Collectible.hpp"
 #include "Collider.hpp"
-#include "ResourceManager.hpp"
+#include "ICollectible.hpp"
 #include "Settings.hpp"
 
 #include <SFML/Graphics.hpp>
 
-class Portal : Collectible
+class Portal : ICollectible
 {
 public:
     Portal(sf::Vector2f l_position, int l_type);

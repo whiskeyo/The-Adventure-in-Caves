@@ -1,22 +1,14 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "Coin.hpp"
-#include "Enemy.hpp"
 #include "HUD.hpp"
-#include "Heart.hpp"
 #include "Player.hpp"
-#include "ResourceManager.hpp"
 #include "Window.hpp"
 #include "World.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-#include <chrono>
-#include <iostream>
-#include <string>
-#include <thread>
 #include <vector>
 
 class Game
@@ -31,10 +23,7 @@ public:
     void update();
     void render();
 
-    Window* getWindow()
-    {
-        return &m_window;
-    }
+    Window* getWindow();
 
 private:
     Window m_window;

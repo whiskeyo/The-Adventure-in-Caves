@@ -1,5 +1,7 @@
 #include "Heart.hpp"
 
+#include "ResourceManager.hpp"
+
 Heart::Heart(sf::Vector2f l_position)
 {
     m_frame = 0;
@@ -13,6 +15,11 @@ Heart::Heart(sf::Vector2f l_position)
     m_bounding_box.setFillColor(G_COLLECTIBLE);
     m_bounding_box.setOrigin(20, 20);
     m_bounding_box.setPosition(l_position);
+}
+
+Collider Heart::getCollider()
+{
+    return Collider(m_bounding_box);
 }
 
 void Heart::animation(int l_frames, int l_ms, int l_starting_x, int l_starting_y)

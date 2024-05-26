@@ -1,5 +1,7 @@
 #include "HUD.hpp"
 
+#include "ResourceManager.hpp"
+
 HUD::HUD(Player* l_player) : m_player(l_player)
 {
     m_health_pos.x = 50;
@@ -19,12 +21,7 @@ HUD::HUD(Player* l_player) : m_player(l_player)
 void HUD::update()
 {
     m_score_text.setString("Score: " + std::to_string(m_player->getScore()));
-    //+ "   Record: " + std::to_string(m_player->getScoreRecord()));
-    //+ " Health: " + std::to_string(m_player->getHealth()));
     m_score_record_text.setString("Record: " + std::to_string(m_player->getScoreRecord()));
-
-    // std::cout << "m_player->getHealth() = " << std::to_string(m_player->getHealth()) << std::endl;
-    // std::cout << "m_health.size() = " << std::to_string(m_health.size()) << std::endl;
 
     if (m_player->getHealth() == m_health.size())
         return;
@@ -33,7 +30,7 @@ void HUD::update()
 
     if (m_player->getHealth() > (int)m_health.size())
         for (int i = 0; i <= hp_diff && m_player->getHealth() > 0; i++)
-            m_health.push_back(HeartHUD(sf::Vector2f(m_health_pos.x + m_health.size() * 50, m_health_pos.y)));
+            m_health.push_back(HealthBar(sf::Vector2f(m_health_pos.x + m_health.size() * 50, m_health_pos.y)));
 
     if (m_player->getHealth() < (int)m_health.size())
         for (int i = 0; i < m_player->getHealth() - m_health.size(); i++)
@@ -44,6 +41,6 @@ void HUD::render(sf::RenderWindow& l_window)
 {
     l_window.draw(m_score_text);
     l_window.draw(m_score_record_text);
-    for (HeartHUD& heart : m_health)
+    for (HealthBar& heart : m_health)
         heart.render(l_window);
 }

@@ -1,5 +1,8 @@
 #include "Portal.hpp"
 
+#include "ResourceManager.hpp"
+
+
 Portal::Portal(sf::Vector2f l_position, int l_type)
 {
     m_frame = 0;

@@ -1,5 +1,8 @@
 #include "Game.hpp"
 
+#include "ResourceManager.hpp"
+
+
 Game::Game()
     : m_window("The Adventure in Caves", sf::Vector2u(W_WIDTH, W_HEIGHT)),
       m_player("assets/levels/level1.txt"),
@@ -19,13 +22,15 @@ Game::~Game()
 
 void Game::run()
 {
-    while (! m_window.isDone())
+    while (not m_window.isDone())
     {
         if (m_clock.getElapsedTime().asSeconds() >= 1.0f / W_FRAMERATE)
         {
             m_window.update(); // it is here to allow as to pause the game
-            if (m_window.isFocused() && ! m_window.isPaused())
+            if (m_window.isFocused() and not m_window.isPaused())
+            {
                 update();
+            }
 
             render();
             m_clock.restart();
@@ -35,7 +40,6 @@ void Game::run()
 
 void Game::loadLevels()
 {
-    // m_world.push_back(World("levels/level0init.txt"));
     m_world.push_back(World("assets/levels/level1.txt"));
     m_world.push_back(World("assets/levels/level2.txt"));
     m_world.push_back(World("assets/levels/level3.txt"));
@@ -166,7 +170,7 @@ void Game::update()
         // m_player.restartGame();
         m_world.clear();
         loadLevels(); // reload world levels
-        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+        // std::this_thread::sleep_for(std::chrono::milliseconds(300));
         m_player.restartGame();
         m_restarted = true;
         m_which_world = 0;
@@ -186,4 +190,9 @@ void Game::render()
     m_player.render(*m_window.getRenderWindow());
 
     m_window.endDraw();
+}
+
+Window* Game::getWindow()
+{
+    return &m_window;
 }

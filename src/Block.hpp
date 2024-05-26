@@ -9,17 +9,11 @@
 class Block
 {
 public:
-    Block(sf::Vector2f l_position, sf::Color l_color);
-    void setColor(int l_r, int l_g, int l_b)
-    {
-        m_body.setFillColor(sf::Color(l_r, l_g, l_b));
-    }
+    Block(sf::Vector2f position, sf::Color color);
 
-    void render(sf::RenderWindow& l_window);
-    Collider getCollider()
-    {
-        return Collider(m_body);
-    }
+    void setColor(const std::uint8_t red, const std::uint8_t green, const std::uint8_t blue);
+    void render(sf::RenderWindow& window);
+    Collider getCollider();
 
 private:
     sf::RectangleShape m_body;

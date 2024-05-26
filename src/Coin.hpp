@@ -1,23 +1,18 @@
 #ifndef COIN_HPP
 #define COIN_HPP
 
-#include "Collectible.hpp"
 #include "Collider.hpp"
-#include "ResourceManager.hpp"
+#include "ICollectible.hpp"
 #include "Settings.hpp"
 
 #include <SFML/Graphics.hpp>
 
-class Coin : Collectible
+class Coin : ICollectible
 {
 public:
-    Coin(sf::Vector2f l_position);
+    Coin(sf::Vector2f position);
 
-    Collider getCollider()
-    {
-        return Collider(m_bounding_box);
-    }
-
+    Collider getCollider();
     void animation(int l_frames, int l_ms, int l_starting_x, int l_starting_y);
     void update();
     void render(sf::RenderWindow& l_window);

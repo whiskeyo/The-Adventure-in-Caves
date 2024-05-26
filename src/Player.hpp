@@ -1,17 +1,15 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "Character.hpp"
 #include "Collider.hpp"
-#include "ResourceManager.hpp"
+#include "ICharacter.hpp"
 #include "Settings.hpp"
 #include "World.hpp"
 
 #include <SFML/Graphics.hpp>
-#include <fstream>
 #include <string>
 
-class Player : public Character
+class Player : public ICharacter
 {
 public:
     Player(std::string l_filename);
@@ -63,7 +61,7 @@ public:
         return m_score_record;
     }
 
-    void attack(Character* l_enemy);
+    void attack(ICharacter* l_enemy);
     bool canAttack()
     {
         return m_attack_clock.getElapsedTime() > sf::milliseconds(300);

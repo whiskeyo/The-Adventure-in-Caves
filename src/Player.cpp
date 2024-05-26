@@ -1,5 +1,8 @@
 #include "Player.hpp"
 
+#include "ResourceManager.hpp"
+
+
 Player::Player(std::string l_filename)
 {
     m_action = Action::NONE;
@@ -47,7 +50,7 @@ Player::Player(std::string l_filename)
     level.close();
 }
 
-void Player::attack(Character* l_enemy)
+void Player::attack(ICharacter* l_enemy)
 {
     l_enemy->changeHealth(-m_damage);
     m_attack_clock.restart();
@@ -56,10 +59,13 @@ void Player::attack(Character* l_enemy)
 void Player::onCollision(sf::Vector2f l_collision_direction)
 {
     if (l_collision_direction.x < 0.0f) // collision on the left
+    {
         m_speed.x = 0.0f;
-
+    }
     else if (l_collision_direction.x > 0.0f) // collision on the right
+    {
         m_speed.x = 0.0f;
+    }
 
     if (l_collision_direction.y > 0.0f) // collision on the bottom
     {
@@ -67,7 +73,9 @@ void Player::onCollision(sf::Vector2f l_collision_direction)
         m_can_jump = true;
     }
     else if (l_collision_direction.y < 0.0f) // collision on the top
+    {
         m_speed.y = 0.0f;
+    }
 }
 
 void Player::gameOver()
@@ -161,8 +169,9 @@ void Player::update()
     m_bounding_box.move(m_speed);
     m_player_sprite.setPosition(m_bounding_box.getPosition().x, m_bounding_box.getPosition().y - 6);
 }
+
 void Player::render(sf::RenderWindow& l_window)
 {
-    // l_window.draw(m_bounding_box);
+    l_window.draw(m_bounding_box);
     l_window.draw(m_player_sprite);
 }

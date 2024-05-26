@@ -1,5 +1,7 @@
 #include "Enemy.hpp"
 
+#include "ResourceManager.hpp"
+
 Enemy::Enemy(int l_type, sf::Vector2f l_position, int l_damage, int l_health)
 {
     m_action = Action::NONE;
@@ -46,10 +48,48 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::attack(Character* l_enemy)
+void Enemy::setAction(Action l_action)
+{
+    m_action = l_action;
+}
+
+Action Enemy::getAction()
+{
+    return m_action;
+}
+
+int Enemy::getHealth()
+{
+    return m_health;
+}
+
+void Enemy::changeHealth(int l_value)
+{
+    m_health += l_value;
+}
+
+void Enemy::attack(ICharacter* l_enemy)
 {
     l_enemy->changeHealth(-m_damage);
     m_attack_clock.restart();
+}
+
+bool Enemy::canAttack()
+{
+    return m_attack_clock.getElapsedTime() > sf::milliseconds(700);
+}
+
+sf::Vector2f Enemy::getPosition()
+{
+    return m_bounding_box.getPosition();
+}
+sf::Vector2f Enemy::getHalfSize()
+{
+    return sf::Vector2f(20, 28);
+}
+Collider Enemy::getCollider()
+{
+    return Collider(m_bounding_box);
 }
 
 void Enemy::animation(int l_frames, int l_ms, int l_starting_x, int l_starting_y)

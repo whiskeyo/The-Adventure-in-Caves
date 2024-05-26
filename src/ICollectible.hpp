@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Collectible
+class ICollectible
 {
     virtual void animation(int l_frames, int l_ms, int l_starting_x, int l_starting_y) = 0;
     virtual void update() = 0;

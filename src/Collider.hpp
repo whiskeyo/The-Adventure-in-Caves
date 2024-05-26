@@ -8,23 +8,13 @@ class Collider
 {
 public:
     Collider(sf::RectangleShape& l_body);
-    ~Collider();
 
-    void move(float l_x, float l_y)
-    {
-        m_body.move(l_x, l_y);
-    }
-    sf::Vector2f getPosition()
-    {
-        return m_body.getPosition();
-    }
-    sf::Vector2f getHalfSize()
-    {
-        return m_body.getSize() / 2.0f;
-    }
+    void move(float x, float y);
+    sf::Vector2f getPosition();
+    sf::Vector2f getHalfSize();
 
-    // push means how hard is it to move the object (0 - easily, 1 - impossible)
-    bool checkCollision(Collider l_other, sf::Vector2f& l_action, float l_push);
+    // pushForce means how hard is it to move the object (0 - easily, 1 - impossible)
+    bool checkCollision(Collider otherCollider, sf::Vector2f& direction, float pushForce);
 
 private:
     sf::RectangleShape& m_body;

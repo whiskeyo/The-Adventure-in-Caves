@@ -35,7 +35,7 @@ void Window::create()
 {
     auto style = (m_fullscreen ? sf::Style::Fullscreen : sf::Style::Default);
     m_window.create({m_window_size.x, m_window_size.y, 32}, m_window_title, style);
-    m_window.setVerticalSyncEnabled(m_vsync);
+    m_window.setVerticalSyncEnabled(false);
 }
 
 void Window::destroy()

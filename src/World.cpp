@@ -1,5 +1,8 @@
 #include "World.hpp"
 
+#include "ResourceManager.hpp"
+
+
 World::World(std::string l_filename)
 {
     // m_background_sprite.setTexture(ResourceManager::getInstance()->requestTexture("menu_background"), true);

@@ -1,6 +1,8 @@
 #include "Coin.hpp"
 
-Coin::Coin(sf::Vector2f l_position)
+#include "ResourceManager.hpp"
+
+Coin::Coin(sf::Vector2f position)
 {
     m_frame = 0;
     m_anim_clock.restart();
@@ -9,12 +11,17 @@ Coin::Coin(sf::Vector2f l_position)
     m_coin_sprite.setTextureRect(sf::IntRect(sf::Vector2i(0, 0), C_FRAMESIZE));
     m_coin_sprite.setOrigin(100.0f, 100.0f);
     m_coin_sprite.scale(0.2f, 0.2f);
-    m_coin_sprite.setPosition(l_position);
+    m_coin_sprite.setPosition(position);
 
     m_bounding_box.setSize(sf::Vector2f(40, 40));
     m_bounding_box.setFillColor(G_COLLECTIBLE);
     m_bounding_box.setOrigin(20.0f, 20.0f);
-    m_bounding_box.setPosition(l_position);
+    m_bounding_box.setPosition(position);
+}
+
+Collider Coin::getCollider()
+{
+    return Collider(m_bounding_box);
 }
 
 void Coin::animation(int l_frames, int l_ms, int l_starting_x, int l_starting_y)
